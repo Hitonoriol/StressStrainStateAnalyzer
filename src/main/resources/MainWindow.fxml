@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hitonoriol.stressstrain.gui.calcscreen.MainScreenController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="{FILE}">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#openReport" text="{OPEN_REPORT}" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#quit" text="{QUIT}" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="{HELP}">
+          <items>
+            <MenuItem mnemonicParsing="false" text="{ABOUT}" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" onAction="#chooseLanguage" text="{LANGUAGE}">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Українська [ua]" />
+                      <MenuItem mnemonicParsing="false" text="English [en]" />
+                        <MenuItem mnemonicParsing="false" text="Русский [ru]" />
+                    </items>
+                  </Menu>
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <SplitPane dividerPositions="0.25">
+         <items>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="550.0" minViewportWidth="260.0">
+               <content>
+                  <VBox fx:id="sideBar">
+                     <children>
+                        <TitledPane fx:id="inputPane" alignment="TOP_LEFT" collapsible="false" contentDisplay="TOP" maxHeight="-Infinity" text="{INPUT_TITLE}" wrapText="true">
+                           <content>
+                              <VBox minWidth="250.0" spacing="25.0">
+                                 <children>
+                                    <VBox style="-fx-padding-left: 1000;">
+                                       <children>
+                                          <Label fx:id="nLabel" maxHeight="1.7976931348623157E308" minHeight="-Infinity" text="{N_DESC}:" textAlignment="JUSTIFY" wrapText="true" />
+                                          <HBox styleClass="section">
+                                             <children>
+                                                <Spinner fx:id="nField" amountToStepBy="1" editable="true" initialValue="1" max="4294967295" maxWidth="1.7976931348623157E308" min="1" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label fx:id="qLabel" focusTraversable="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" text="{Q_DESC}:" textAlignment="JUSTIFY" textOverrun="CLIP" wrapText="true">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <HBox id="qBox" prefHeight="58.0" prefWidth="308.0" spacing="10.0" styleClass="section">
+                                             <children>
+                                                <HBox maxWidth="1.7976931348623157E308" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <VBox prefHeight="58.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label text="q1:" />
+                                                            <Spinner fx:id="q1Field" amountToStepBy="0.000001" editable="true" initialValue="0.000001" max="3.402823466E38" maxWidth="1.7976931348623157E308" min="-1.175494351E38" prefHeight="30.0" prefWidth="399.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="58.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label text="q2:" />
+                                                            <Spinner fx:id="q2Field" amountToStepBy="0.000001" editable="true" initialValue="-0.000001" max="3.402823466E38" maxWidth="1.7976931348623157E308" min="-1.175494351E38" prefHeight="30.0" prefWidth="152.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label fx:id="kpiLabel" maxHeight="1.7976931348623157E308" minHeight="-Infinity" text="{KPI_DESC}:" textAlignment="JUSTIFY" wrapText="true" />
+                                          <HBox styleClass="section">
+                                             <children>
+                                                <Spinner fx:id="kpiField" amountToStepBy="0.1" editable="true" initialValue="2.0" max="3.402823466E38" maxWidth="1.7976931348623157E308" min="0.1" HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox>
+                                       <children>
+                                          <Label fx:id="uslLabel" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" text="{USL_DESC}:" textAlignment="JUSTIFY" wrapText="true">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets top="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <VBox spacing="5.0" styleClass="section">
+                                             <children>
+                                                <CheckBox fx:id="usl1Check" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="{USL1_DESC}" />
+                                                <CheckBox fx:id="usl2Check" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="{USL2_DESC}" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="calcBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calculate" text="{CALC_TEXT}" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </TitledPane>
+                        <TitledPane alignment="TOP_LEFT" expanded="false" maxHeight="1.7976931348623157E308" text="{SETTINGS}" VBox.vgrow="ALWAYS">
+                           <content>
+                              <VBox spacing="25.0">
+                                 <children>
+                                    <CheckBox fx:id="sciNotationCheck" mnemonicParsing="false" text="{SCIENTIFIC_NOT}" textAlignment="JUSTIFY" wrapText="true" />
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="{Q_STEP}:" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0" styleClass="section">
+                                             <children>
+                                                <TextField fx:id="qStepField" text="0.000001" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <TabPane fx:id="resultPane" focusTraversable="false" />
+         </items>
+      </SplitPane>
+  </children>
+</VBox>

@@ -1,0 +1,65 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	implementation 'net.java.dev.jna:jna:5.10.0'
+	implementation 'org.apache.commons:commons-text:1.9'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.1'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.12.1'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.1'
+	compile 'de.vandermeer:asciitable:0.3.2'
+	implementation 'org.gillius:jfxutils:1.0'
+
+	runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
+	runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
+
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+javafx {
+    version = "17.0.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+}
+
+version = '0.1.2'
+mainClassName = 'hitonoriol.stressstrain.Main'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_9
+    targetCompatibility = JavaVersion.VERSION_1_9
+}
+
+task makeNativeLib(type: Exec) {
+	workingDir "$projectDir/core-lib"
+	commandLine 'make'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+}
+
+task dist(type: Jar) {
+	archivesBaseName = 'Stress Strain State Analyzer'
+	manifest {
+		attributes 	'Main-Class': mainClassName,
+					'Implementation-Title': archivesBaseName,
+					'Implementation-Version': version
+	}
+	
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	with jar
+}

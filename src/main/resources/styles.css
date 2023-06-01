@@ -1,0 +1,27 @@
+Label, CheckBox, TitledPane, MenuBar, Button, TextFlow {
+	-fx-font-size: 14;
+}
+
+.section {
+	-fx-padding: 5 0 0 15
+}
+
+.fill_parent {
+	-fx-max-width: 100%;
+	-fx-pref-width: 100%;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-unit-increment: 100;
+    -fx-block-increment: 100;
+}
+
+.chart-series-line {    
+    -fx-stroke-width: 5px;
+    -fx-effect: dropshadow(gaussian, black, 5, 0.0001, 1, 1);
+}
+ 
+.default-color0.chart-series-line { -fx-stroke: #0d92ff; }
+.default-color1.chart-series-line { -fx-stroke: #ff5e5e; }
+.default-color0.chart-line-symbol { -fx-background-color: #0d92ff, white; }
+.default-color1.chart-line-symbol { -fx-background-color: #ff5e5e, white; }
